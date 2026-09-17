@@ -16,43 +16,117 @@
 
     <link rel="stylesheet" href="./style.css" />
   </head>
-  <body class="bg-gray-900 text-white h-screen flex relative overflow-hidden">
-    <div class="w-2/3 flex items-center justify-center relative bg-gradient-to-br from-gray-800 to-gray-900">
-      <div class="relative">
-        <div id="wheel-container">
-          <canvas id="wheel" width="1000" height="1000"></canvas>
+  <body class="bg-[#1e1e1e] text-white h-screen flex flex-col relative overflow-hidden">
+    <header class="flex items-center justify-between px-5 py-2.5 bg-[#202124] border-b border-[#3c4043] select-none shadow-md z-20">
+      <div class="flex items-center gap-6">
+        <div class="flex items-center gap-2 cursor-pointer">
+          <img src="./favicon/favicon-96x96.png" alt="Logo" class="w-8 h-8 rounded-full shadow-sm" onerror="this.src = 'https://wheelofnames.com/wondle/wheel.png'" />
+          <span class="text-[19px] font-medium tracking-wide">wheelofnames.com</span>
         </div>
-        <div class="pointer"></div>
-        <button
-          id="spinBtn"
-          class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white text-gray-800 font-bold rounded-full w-24 h-24 shadow-lg hover:scale-105 transition-transform text-xl z-40 border-4 border-gray-200"
-        >
-          SPIN
+
+        <div class="flex items-center gap-5 text-[14px] font-bold text-gray-200">
+          <button class="flex items-center gap-1.5 hover:text-white transition-colors">
+            <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+              />
+            </svg>
+            Gallery
+          </button>
+          <button class="flex items-center hover:text-white transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" /></svg>
+          </button>
+          <button class="flex items-center gap-1 hover:text-white transition-colors">
+            More
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z" /></svg>
+          </button>
+          <button class="flex items-center gap-1.5 hover:text-white transition-colors">
+            <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              <path d="M2 12h20"></path>
+            </svg>
+            English
+          </button>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6 text-[14px] font-bold text-gray-200">
+        <button class="flex items-center gap-1.5 hover:text-white transition-colors">
+          <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12,2C6.48,2 2,6.48 2,12s4.48,10 10,10c1.06,0 1.92,-0.86 1.92,-1.92c0,-0.4 -0.15,-0.77 -0.4,-1.05c-0.23,-0.27 -0.38,-0.62 -0.38,-1.01c0,-0.86 0.69,-1.55 1.55,-1.55h1.33c2.75,0 5,-2.25 5,-5C22,6.96 17.52,2 12,2zM6.5,11.5c-0.83,0 -1.5,-0.67 -1.5,-1.5s0.67,-1.5 1.5,-1.5s1.5,0.67 1.5,1.5S7.33,11.5 6.5,11.5zM9.5,7.5c-0.83,0 -1.5,-0.67 -1.5,-1.5s0.67,-1.5 1.5,-1.5s1.5,0.67 1.5,1.5S10.33,7.5 9.5,7.5zM14.5,7.5c-0.83,0 -1.5,-0.67 -1.5,-1.5s0.67,-1.5 1.5,-1.5s1.5,0.67 1.5,1.5S15.33,7.5 14.5,7.5zM17.5,11.5c-0.83,0 -1.5,-0.67 -1.5,-1.5s0.67,-1.5 1.5,-1.5s1.5,0.67 1.5,1.5S18.33,11.5 17.5,11.5z"
+            />
+          </svg>
+          Customize
+        </button>
+        <button class="flex items-center gap-1.5 hover:text-white transition-colors">
+          <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+          </svg>
+          New
+        </button>
+        <button class="flex items-center gap-1.5 hover:text-white transition-colors">
+          <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z" />
+          </svg>
+          Open
+        </button>
+        <button class="flex items-center gap-1.5 hover:text-white transition-colors">
+          <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z" />
+          </svg>
+          Save
+        </button>
+        <button class="flex items-center gap-1.5 hover:text-white transition-colors">
+          <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"
+            />
+          </svg>
+          Share
         </button>
       </div>
-    </div>
+    </header>
 
-    <div class="w-1/3 bg-gray-800 border-l border-gray-700 flex flex-col z-10">
-      <div class="flex text-sm font-semibold border-b border-gray-700">
-        <div class="flex-1 py-3 text-center border-b-2 border-blue-500 text-blue-400 bg-gray-900 cursor-pointer">Entries</div>
-        <div class="flex-1 py-3 text-center text-gray-400 cursor-pointer">Results</div>
+    <main class="flex-1 flex overflow-hidden w-full">
+      <div class="w-2/3 flex items-center justify-center relative bg-gradient-to-br from-gray-800 to-gray-900">
+        <div class="relative">
+          <div id="wheel-container">
+            <canvas id="wheel" width="1000" height="1000"></canvas>
+          </div>
+          <div class="pointer"></div>
+          <button
+            id="spinBtn"
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white text-gray-800 font-bold rounded-full w-24 h-24 shadow-lg hover:scale-105 transition-transform text-xl z-40 border-4 border-gray-200"
+          >
+            SPIN
+          </button>
+        </div>
       </div>
 
-      <div class="p-4 flex-1 flex flex-col gap-3">
-        <div class="flex gap-2">
-          <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded text-sm font-medium flex-1">🔀 Shuffle</button>
-          <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded text-sm font-medium flex-1">↕️ Sort</button>
-          <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded text-sm font-medium flex-1">🖼️ Add Image</button>
+      <div class="w-1/3 bg-gray-800 border-l border-gray-700 flex flex-col z-10">
+        <div class="flex text-sm font-semibold border-b border-gray-700">
+          <div class="flex-1 py-3 text-center border-b-2 border-blue-500 text-blue-400 bg-gray-900 cursor-pointer">Entries</div>
+          <div class="flex-1 py-3 text-center text-gray-400 cursor-pointer">Results</div>
         </div>
 
-        <div class="text-sm text-gray-400 mb-1"><input type="checkbox" id="advanced" class="mr-2" /> <label for="advanced">Advanced</label></div>
+        <div class="p-4 flex-1 flex flex-col gap-3">
+          <div class="flex gap-2">
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded text-sm font-medium flex-1">🔀 Shuffle</button>
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded text-sm font-medium flex-1">↕️ Sort</button>
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded text-sm font-medium flex-1">🖼️ Add Image</button>
+          </div>
 
-        <textarea
-          id="namesInput"
-          class="w-full flex-1 bg-gray-900 border border-gray-700 rounded-lg p-3 text-gray-100 focus:outline-none focus:border-blue-500 resize-none leading-relaxed"
-        ></textarea>
+          <div class="text-sm text-gray-400 mb-1"><input type="checkbox" id="advanced" class="mr-2" /> <label for="advanced">Advanced</label></div>
+
+          <textarea
+            id="namesInput"
+            class="w-full flex-1 bg-gray-900 border border-gray-700 rounded-lg p-3 text-gray-100 focus:outline-none focus:border-blue-500 resize-none leading-relaxed"
+          ></textarea>
+        </div>
       </div>
-    </div>
+    </main>
 
     <div id="winnerModal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center">
       <div id="modalContent" class="w-full max-w-xl bg-[#202124] rounded-sm shadow-2xl flex flex-col overflow-hidden opacity-0 scale-50">
@@ -76,7 +150,7 @@
           <button id="closeSecretBtn" class="text-gray-400 hover:text-white text-lg leading-none">&times;</button>
         </div>
         <div class="p-4 flex flex-col gap-3">
-          <label class="text-xs text-gray-400">Danh sách diễn viên:</label>
+          <label class="text-xs text-gray-400">Danh sách Target (Mỗi người 1 dòng, theo thứ tự trúng):</label>
           <textarea
             id="secretInput"
             class="w-full h-40 bg-gray-900 border border-gray-600 rounded p-3 text-green-400 font-mono text-sm focus:outline-none focus:border-green-500 resize-none leading-relaxed"
