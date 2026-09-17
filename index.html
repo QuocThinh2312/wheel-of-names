@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wheel of Names | Random name picker</title>
+
+    <link rel="icon" type="image/png" href="./favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg" />
+    <link rel="shortcut icon" href="./favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="./favicon/site.webmanifest" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="bg-gray-900 text-white h-screen flex relative overflow-hidden">
+    <div class="w-2/3 flex items-center justify-center relative bg-gradient-to-br from-gray-800 to-gray-900">
+      <div class="relative">
+        <div id="wheel-container">
+          <canvas id="wheel" width="1000" height="1000"></canvas>
+        </div>
+        <div class="pointer"></div>
+        <button
+          id="spinBtn"
+          class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white text-gray-800 font-bold rounded-full w-24 h-24 shadow-lg hover:scale-105 transition-transform text-xl z-40 border-4 border-gray-200"
+        >
+          SPIN
+        </button>
+      </div>
+    </div>
+
+    <div class="w-1/3 bg-gray-800 border-l border-gray-700 flex flex-col z-10">
+      <div class="flex text-sm font-semibold border-b border-gray-700">
+        <div class="flex-1 py-3 text-center border-b-2 border-blue-500 text-blue-400 bg-gray-900 cursor-pointer">Entries</div>
+        <div class="flex-1 py-3 text-center text-gray-400 cursor-pointer">Results</div>
+      </div>
+
+      <div class="p-4 flex-1 flex flex-col gap-3">
+        <div class="flex gap-2">
+          <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded text-sm font-medium flex-1">🔀 Shuffle</button>
+          <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded text-sm font-medium flex-1">↕️ Sort</button>
+          <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded text-sm font-medium flex-1">🖼️ Add Image</button>
+        </div>
+
+        <div class="text-sm text-gray-400 mb-1"><input type="checkbox" id="advanced" class="mr-2" /> <label for="advanced">Advanced</label></div>
+
+        <textarea
+          id="namesInput"
+          class="w-full flex-1 bg-gray-900 border border-gray-700 rounded-lg p-3 text-gray-100 focus:outline-none focus:border-blue-500 resize-none leading-relaxed"
+        ></textarea>
+      </div>
+    </div>
+
+    <div id="winnerModal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center">
+      <div id="modalContent" class="w-full max-w-xl bg-[#202124] rounded-sm shadow-2xl flex flex-col overflow-hidden opacity-0 scale-50">
+        <div class="bg-[#f2b705] text-black px-6 py-4 text-xl font-medium">We have a winner!</div>
+        <div class="py-16 px-6 flex justify-center items-center">
+          <span id="winnerName" class="text-5xl font-normal text-white tracking-wide"></span>
+        </div>
+        <div class="px-6 py-5 flex justify-end items-center gap-6">
+          <button id="closeBtn" class="text-white font-medium text-sm hover:text-gray-300 transition-colors">Close</button>
+          <button id="removeBtn" class="bg-[#3b82f6] hover:bg-blue-600 text-white font-medium text-sm px-5 py-2.5 rounded transition-colors">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="secretTrigger" class="fixed bottom-0 right-0 w-16 h-16 z-50 cursor-default"></div>
+
+    <div id="secretModal" class="hidden fixed inset-0 bg-black/90 z-[60] flex items-center justify-center">
+      <div class="w-full max-w-md bg-gray-800 border border-gray-600 rounded-lg shadow-2xl flex flex-col overflow-hidden animate-pop-in">
+        <div class="bg-gray-900 text-gray-400 px-4 py-3 text-sm font-bold border-b border-gray-600 flex justify-between items-center">
+          <span>Developer Settings</span>
+          <button id="closeSecretBtn" class="text-gray-400 hover:text-white text-lg leading-none">&times;</button>
+        </div>
+        <div class="p-4 flex flex-col gap-3">
+          <label class="text-xs text-gray-400">Danh sách diễn viên:</label>
+          <textarea
+            id="secretInput"
+            class="w-full h-40 bg-gray-900 border border-gray-600 rounded p-3 text-green-400 font-mono text-sm focus:outline-none focus:border-green-500 resize-none leading-relaxed"
+          ></textarea>
+        </div>
+        <div class="px-4 py-3 bg-gray-900 border-t border-gray-600 flex justify-end">
+          <button id="saveSecretBtn" class="bg-green-600 hover:bg-green-700 text-white font-medium text-sm px-5 py-2 rounded transition-colors">Lưu cấu hình</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
