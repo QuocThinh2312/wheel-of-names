@@ -64,7 +64,7 @@ const initialNames = [
   'Nguyễn Hữu Ý',
 ];
 const savedTargets = localStorage.getItem('secretTargets');
-let TARGET_WINNERS = savedTargets ? JSON.parse(savedTargets) : ['Trần Yến Nhi', 'Lê Ngọc Bảo Trân', 'Nguyễn Hoàng Thái'];
+let TARGET_WINNERS = savedTargets ? JSON.parse(savedTargets) : ['Nguyễn Hoàng Triệu', 'Phùng Duy Thịnh', 'Lê Tuấn Kiệt'];
 const colors = ['#fbbc05', '#ea4335', '#4285f4', '#34a853'];
 
 const canvas = document.getElementById('wheel');
